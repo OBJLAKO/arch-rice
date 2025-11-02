@@ -1,0 +1,183 @@
+/* ─────────────────────────────────────────────────────────────
+   NEMO — Mono Glass Pro (GTK3-safe)
+   Строгие серые акценты, мягкие бордеры, стекло через композитор.
+   ───────────────────────────────────────────────────────────── */
+
+@define-color bg       #0b0c0e;   /* базовый глубокий */
+@define-color surface  #0e1013;   /* слой для панелей/вью */
+@define-color text     #e6e7e8;   /* основной текст */
+@define-color muted    #a9adb2;   /* вторичный текст */
+@define-color line     #2a2e34;   /* бордер/разделитель */
+@define-color accent   #7c8696;   /* холодный серо-синий акцент (очень сдержанный) */
+
+/* БАЗА ОКНА */
+.nemo-window,
+.nemo-window .view,
+.nemo-window .sidebar {
+  background-color: alpha(@bg, 0.06);
+  color: @text;
+}
+
+/* HEADERBAR / TOOLBAR / PATH-BAR */
+.nemo-window headerbar,
+.nemo-window .toolbar,
+.path-bar {
+  background-color: alpha(@surface, 0.40);
+  color: @text;
+  margin: 8px;
+  padding: 6px;
+  border-radius: 10px;
+  border: 1px solid alpha(@line, 0.55);
+  box-shadow:
+    0 1px 0 alpha(@line, 0.25),
+    0 12px 28px alpha(@line, 0.12);
+}
+
+/* Кнопки/чипы */
+.nemo-window headerbar .button,
+.nemo-window .toolbar .button,
+.path-bar button {
+  background-color: alpha(@bg, 0.35);
+  color: @text;
+  border-radius: 8px;
+  border: 1px solid alpha(@line, 0.55);
+  padding: 4px 10px;
+  box-shadow: inset 0 0 0 1px alpha(@line, 0.25);
+}
+.nemo-window headerbar .button:hover,
+.nemo-window .toolbar .button:hover,
+.path-bar button:hover {
+  background-color: alpha(@accent, 0.08);
+  border-color: alpha(@line, 0.75);
+}
+.path-bar button:checked,
+.path-bar button:active {
+  background-color: alpha(@accent, 0.12);
+  border-color: alpha(@line, 0.85);
+  box-shadow:
+    0 0 0 2px alpha(@accent, 0.14),
+    inset 0 0 0 1px alpha(@line, 0.35);
+}
+
+/* БОКОВАЯ ПАНЕЛЬ (Places) */
+.nemo-places-sidebar {
+  background-color: alpha(@surface, 0.36);
+  border-radius: 10px;
+  margin: 8px;
+  padding: 6px;
+  border: 1px solid alpha(@line, 0.55);
+  box-shadow: 0 10px 24px alpha(@line, 0.10);
+}
+.nemo-places-sidebar treeview.view {
+  background: transparent;
+  color: @muted;
+}
+.nemo-places-sidebar treeview.view row:selected,
+.nemo-places-sidebar treeview.view:selected,
+.nemo-places-sidebar treeview.view row:selected:focus {
+  background-color: alpha(@accent, 0.14);
+  color: @text;
+  border: 1px solid alpha(@line, 0.75);
+  box-shadow: inset 0 0 0 1px alpha(@line, 0.35);
+}
+
+/* КОНТЕНТ (иконки/списки) */
+.nemo-window .view {
+  background-color: alpha(@surface, 0.30);
+  border-radius: 10px;
+  margin: 8px;
+  padding: 6px;
+  border: 1px solid alpha(@line, 0.50);
+}
+
+/* Иконки/плитки */
+.nemo-canvas-item {
+  background: transparent;
+  border-radius: 8px;
+  padding: 4px;
+}
+.nemo-canvas-item:hover {
+  background-color: alpha(@accent, 0.08);
+  border: 1px solid alpha(@line, 0.60);
+  box-shadow:
+    0 0 0 1px alpha(@line, 0.20),
+    0 8px 18px alpha(@line, 0.12);
+}
+.nemo-canvas-item:selected {
+  background-color: alpha(@accent, 0.16);
+  border: 1px solid alpha(@line, 0.85);
+  box-shadow:
+    0 0 0 2px alpha(@accent, 0.14),
+    0 10px 26px alpha(@line, 0.16);
+  color: @text;
+}
+
+/* Список (treeview) */
+.nemo-window treeview.view {
+  background: transparent;
+}
+.nemo-window treeview.view row:selected,
+.nemo-window treeview.view:selected,
+.nemo-window treeview.view row:selected:focus {
+  background-color: alpha(@accent, 0.14);
+  color: @text;
+  border: 1px solid alpha(@line, 0.70);
+  box-shadow: inset 0 0 0 1px alpha(@line, 0.35);
+}
+
+/* СТАТУСБАР / ФЛОАТИНГ */
+.nemo-statusbar,
+.nemo-window .floating-bar {
+  background-color: alpha(@surface, 0.36);
+  color: @muted;
+  border-radius: 10px;
+  margin: 8px;
+  padding: 6px;
+  border: 1px solid alpha(@line, 0.55);
+  box-shadow: 0 10px 24px alpha(@line, 0.10);
+}
+
+/* Разделители */
+.nemo-window paned separator {
+  background-color: alpha(@line, 0.70);
+  min-width: 2px;
+  min-height: 2px;
+  border-radius: 2px;
+}
+
+/* Меню/поповеры */
+popover, menu {
+  background-color: alpha(@bg, 0.88);
+  color: @text;
+  border: 1px solid alpha(@line, 0.60);
+  border-radius: 10px;
+  box-shadow: 0 14px 40px alpha(@line, 0.14);
+}
+menuitem:hover, popover modelbutton:hover {
+  background-color: alpha(@accent, 0.10);
+  border-radius: 6px;
+}
+
+/* Поля ввода/поиска */
+entry,
+location-entry,
+.search-entry {
+  background-color: alpha(@bg, 0.55);
+  color: @text;
+  border: 1px solid alpha(@line, 0.60);
+  border-radius: 8px;
+  padding: 4px 8px;
+  box-shadow: inset 0 0 0 1px alpha(@line, 0.25);
+}
+entry:focus,
+location-entry:focus,
+.search-entry:focus {
+  border-color: alpha(@line, 0.85);
+  box-shadow:
+    0 0 0 2px alpha(@line, 0.20),
+    inset 0 0 0 1px alpha(@line, 0.35);
+}
+
+/* Неактивное окно — слегка тусклее */
+.nemo-window:backdrop { opacity: 0.97; }
+
